@@ -53,6 +53,7 @@ nmap K i<enter><esc>k$
 nnoremap J gJ
 Arpeggio noremap oj :call ku#start(['file'])<return>
 Arpeggio noremap kl :call ku#start(['buffer'])<return>
+Arpeggio noremap df :call ku#start(['git'])<return>
 Arpeggio noremap sf :w<return>
 Arpeggio noremap bw :BW<return>
 
@@ -65,3 +66,27 @@ vmap <s-tab> <gv
 " Make return move down
 map <return> <down>
 
+" Ku sources
+function! GatherGitCandidates(args)
+  let _ = []
+  " 'abc' -> '*[aA]*[bB]*[cC]*'
+  let pat = substitute(tolower(a:args.pattern), '.', '\="[".submatch(0).toupper(submatch(0))."]*"', 'g')
+  let output = system("git ls-files *" . pat)
+  let n = 0
+  for filename in split(output, "\n")
+    let n = n + 1
+    if n == 20
+      break
+    endif
+    call add(_, {
+    \      'word': filename,
+    \    })
+  endfor
+  return _
+endfunction
+
+call ku#define_source({
+\   'gather_candidates': function('GatherGitCandidates'),
+\   'kinds': ['file'],
+\   'name': 'git',
+\ })
