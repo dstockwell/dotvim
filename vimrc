@@ -51,8 +51,8 @@ call arpeggio#load()
 " Custom
 nmap K i<enter><esc>k$
 nnoremap J gJ
-Arpeggio noremap oj :Ku file<return>
-Arpeggio noremap kl :Ku buffer<return>
+Arpeggio noremap oj :call ku#start(['file'])<return>
+Arpeggio noremap kl :call ku#start(['buffer'])<return>
 Arpeggio noremap sf :w<return>
 Arpeggio noremap bw :BW<return>
 
