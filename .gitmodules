@@ -7,3 +7,6 @@
 [submodule "bundle/ku"]
 	path = bundle/ku
 	url = https://github.com/dstockwell/vim-ku.git
+[submodule "bundle/bufkill"]
+	path = bundle/bufkill
+	url = https://github.com/vim-scripts/bufkill.vim.git
