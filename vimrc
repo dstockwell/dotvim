@@ -45,6 +45,12 @@ hi LineNr guifg=#CCCCCC guibg=#333333
 hi VertSplit guifg=#333333 guibg=#333333
 set fillchars=
 
+" Diff Style
+hi DiffAdd guibg=#337733
+hi DiffChange guibg=#333355
+hi DiffDelete guibg=#773333
+hi DiffText guibg=#337733
+
 " Plugin setup
 call arpeggio#load()
 
